@@ -5,6 +5,7 @@ import (
 	"github.com/bluele/gcache"
 	"github.com/latifrons/distributed-event-collector/pbgo/dec"
 	cmap "github.com/orcaman/concurrent-map/v2"
+	"github.com/rs/zerolog/log"
 	"sort"
 	"time"
 )
@@ -142,4 +143,17 @@ func (s *SpanCollector) GetEventStatistics(samples int64) (resp *dec.GetEventSta
 		resp.EventStatisticList = append(resp.EventStatisticList, v)
 	}
 	return
+}
+
+func (s *SpanCollector) Dump() {
+	resp, err := s.GetEventStatistics(100)
+	if err != nil {
+		log.Error().Err(err).Msg("failed to get event statistics")
+		return
+	}
+	for _, v := range resp.EventStatisticList {
+		log.Info().Str("event_type", v.EventType).Int64("count", v.Count).Float64("average_ms", float64(v.SumTimeNano)/1000000.0/float64(v.Count)).Msg("event statistics")
+	}
+	log.Info().Msg("dumped event statistics")
+
 }

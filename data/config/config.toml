@@ -1,5 +1,5 @@
 [grpc]
-port = 9000
+port = 9100
 
 [debug]
 debug = false
@@ -13,4 +13,4 @@ grpc_debug = false
 log_level = "info"
 
 [general]
-cache_size = 100000
+cache_size = 1000

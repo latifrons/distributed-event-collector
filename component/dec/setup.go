@@ -4,14 +4,17 @@ import (
 	"github.com/latifrons/commongo/safe_viper"
 	"github.com/latifrons/distributed-event-collector/component/dec/grpc"
 	"github.com/latifrons/distributed-event-collector/debug"
+	"github.com/latifrons/distributed-event-collector/service"
 	"github.com/latifrons/latigo"
 	"github.com/latifrons/latigo/cron"
 	"github.com/latifrons/latigo/grpcserver"
+	"time"
 )
 
 type DECSetup struct {
-	DebugFlags   *debug.Flags           `container:"type"`
-	GrpcProvider *grpc.DECRouteProvider `container:"type"`
+	DebugFlags    *debug.Flags           `container:"type"`
+	GrpcProvider  *grpc.DECRouteProvider `container:"type"`
+	SpanCollector *service.SpanCollector `container:"type"`
 }
 
 func (s *DECSetup) ProvideBootSequence() []latigo.BootSequence {
@@ -33,7 +36,18 @@ func (s *DECSetup) ProvideBootSequence() []latigo.BootSequence {
 		},
 	}
 
-	crons := []cron.CronJob{}
+	crons := []cron.CronJob{
+		{
+			Name:             "Dump",
+			Type:             cron.CronJobTypeInterval,
+			Cron:             "",
+			WaitForSchedule:  false,
+			DisableSingleton: false,
+			Interval:         time.Second * 10,
+			Function:         s.SpanCollector.Dump,
+			Params:           nil,
+		},
+	}
 
 	for _, cr := range crons {
 		bs = append(bs, latigo.BootSequence{
