@@ -2,8 +2,6 @@ module github.com/latifrons/distributed-event-collector
 
 go 1.21.0
 
-toolchain go1.22.1
-
 require (
 	github.com/bluele/gcache v0.0.2
 	github.com/go-redis/redis/v8 v8.11.5
