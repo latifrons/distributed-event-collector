@@ -1,6 +1,8 @@
 module github.com/atomeight/distributed-event-collector
 
-go 1.22
+go 1.21.0
+
+toolchain go1.22.1
 
 require (
 	github.com/bluele/gcache v0.0.2
@@ -8,6 +10,7 @@ require (
 	github.com/golobby/container/v3 v3.3.2
 	github.com/latifrons/commongo v0.0.14
 	github.com/latifrons/latigo v0.1.29
+	github.com/orcaman/concurrent-map/v2 v2.0.1
 	github.com/pkg/errors v0.9.1
 	github.com/rs/zerolog v1.33.0
 	github.com/shopspring/decimal v1.4.0
@@ -36,7 +39,6 @@ require (
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.20 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
-	github.com/orcaman/concurrent-map/v2 v2.0.1 // indirect
 	github.com/pelletier/go-toml/v2 v2.2.3 // indirect
 	github.com/robfig/cron/v3 v3.0.1 // indirect
 	github.com/sagikazarmark/locafero v0.6.0 // indirect
