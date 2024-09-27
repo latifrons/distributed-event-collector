@@ -1,0 +1,18 @@
+[grpc]
+port = 9000
+
+[debug]
+debug = false
+return_detail_error = false
+db_log = false
+request_log = false
+response_log = false
+rpc_log = false
+gin_debug = false
+grpc_debug = false
+log_level = "info"
+
+[db]
+migrate_db = "true"
+max_idle = 5
+max_open = 5
