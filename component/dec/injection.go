@@ -2,7 +2,9 @@ package dec
 
 import (
 	"github.com/atomeight/distributed-event-collector/component/dec/grpc"
+	"github.com/atomeight/distributed-event-collector/service"
 	"github.com/golobby/container/v3"
+	"github.com/spf13/viper"
 )
 
 var Singletons = []interface{}{
@@ -21,6 +23,24 @@ var Singletons = []interface{}{
 		if err != nil {
 			panic(err)
 		}
+		return &c
+	},
+	func() *grpc.DecService {
+		var c grpc.DecService
+		err := container.Fill(&c)
+		if err != nil {
+			panic(err)
+		}
+		return &c
+	},
+	func() *service.SpanCollector {
+		var c service.SpanCollector
+		err := container.Fill(&c)
+		if err != nil {
+			panic(err)
+		}
+		c.CacheSize = viper.GetInt("general.cache_size")
+		c.InitDefault()
 		return &c
 	},
 }

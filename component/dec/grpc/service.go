@@ -7,8 +7,8 @@ import (
 )
 
 type DecService struct {
-	//dec.DecServiceServer
-	SpanCollector *service.SpanCollector
+	dec.DecServiceServer
+	SpanCollector *service.SpanCollector `container:"type"`
 }
 
 func (d DecService) GetEventFlow(ctx context.Context, request *dec.GetEventFlowRequest) (*dec.GetEventFlowResponse, error) {

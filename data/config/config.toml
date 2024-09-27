@@ -12,7 +12,5 @@ gin_debug = false
 grpc_debug = false
 log_level = "info"
 
-[db]
-migrate_db = "true"
-max_idle = 5
-max_open = 5
+[general]
+cache_size = 100000
