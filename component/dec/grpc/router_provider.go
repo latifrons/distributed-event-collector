@@ -1,7 +1,7 @@
 package grpc
 
 import (
-	"github.com/atomeight/distributed-event-collector/pbgo/dec"
+	"github.com/latifrons/distributed-event-collector/pbgo/dec"
 	"github.com/latifrons/latigo/grpcserver"
 )
 

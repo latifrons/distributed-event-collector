@@ -1,10 +1,10 @@
 package cmd
 
 import (
-	"github.com/atomeight/distributed-event-collector/component/dec"
-	"github.com/atomeight/distributed-event-collector/core"
 	"github.com/golobby/container/v3"
 	"github.com/latifrons/commongo/safe_viper"
+	"github.com/latifrons/distributed-event-collector/component/dec"
+	"github.com/latifrons/distributed-event-collector/core"
 	"github.com/latifrons/latigo"
 	"github.com/latifrons/latigo/logging"
 	"github.com/latifrons/latigo/program"

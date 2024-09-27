@@ -1,6 +1,6 @@
 package main
 
-import "github.com/atomeight/distributed-event-collector/cmd"
+import "github.com/latifrons/distributed-event-collector/cmd"
 
 func main() {
 	cmd.Execute()

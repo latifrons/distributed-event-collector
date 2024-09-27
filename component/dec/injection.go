@@ -1,9 +1,9 @@
 package dec
 
 import (
-	"github.com/atomeight/distributed-event-collector/component/dec/grpc"
-	"github.com/atomeight/distributed-event-collector/service"
 	"github.com/golobby/container/v3"
+	"github.com/latifrons/distributed-event-collector/component/dec/grpc"
+	"github.com/latifrons/distributed-event-collector/service"
 	"github.com/spf13/viper"
 )
 

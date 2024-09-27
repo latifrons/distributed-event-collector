@@ -2,8 +2,8 @@ package service
 
 import (
 	"errors"
-	"github.com/atomeight/distributed-event-collector/pbgo/dec"
 	"github.com/bluele/gcache"
+	"github.com/latifrons/distributed-event-collector/pbgo/dec"
 	cmap "github.com/orcaman/concurrent-map/v2"
 	"sort"
 	"time"

@@ -3,7 +3,7 @@ package db
 import (
 	"database/sql"
 	"fmt"
-	"github.com/atomeight/distributed-event-collector/consts"
+	"github.com/latifrons/distributed-event-collector/consts"
 	"github.com/latifrons/latigo/berror"
 	"github.com/pkg/errors"
 	"gorm.io/gorm"

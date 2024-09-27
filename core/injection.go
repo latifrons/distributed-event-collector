@@ -1,10 +1,10 @@
 package core
 
 import (
-	"github.com/atomeight/distributed-event-collector/cache"
-	"github.com/atomeight/distributed-event-collector/debug"
-	"github.com/atomeight/distributed-event-collector/tools"
 	"github.com/golobby/container/v3"
+	"github.com/latifrons/distributed-event-collector/cache"
+	"github.com/latifrons/distributed-event-collector/debug"
+	"github.com/latifrons/distributed-event-collector/tools"
 	"github.com/spf13/viper"
 )
 

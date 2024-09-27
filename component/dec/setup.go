@@ -1,9 +1,9 @@
 package dec
 
 import (
-	"github.com/atomeight/distributed-event-collector/component/dec/grpc"
-	"github.com/atomeight/distributed-event-collector/debug"
 	"github.com/latifrons/commongo/safe_viper"
+	"github.com/latifrons/distributed-event-collector/component/dec/grpc"
+	"github.com/latifrons/distributed-event-collector/debug"
 	"github.com/latifrons/latigo"
 	"github.com/latifrons/latigo/cron"
 	"github.com/latifrons/latigo/grpcserver"

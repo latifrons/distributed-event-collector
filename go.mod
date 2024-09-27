@@ -1,4 +1,4 @@
-module github.com/atomeight/distributed-event-collector
+module github.com/latifrons/distributed-event-collector
 
 go 1.21.0
 

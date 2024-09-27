@@ -2,8 +2,8 @@ package grpc
 
 import (
 	"context"
-	"github.com/atomeight/distributed-event-collector/pbgo/dec"
-	"github.com/atomeight/distributed-event-collector/service"
+	"github.com/latifrons/distributed-event-collector/pbgo/dec"
+	"github.com/latifrons/distributed-event-collector/service"
 )
 
 type DecService struct {
