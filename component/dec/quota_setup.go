@@ -1,7 +1,7 @@
-package templatexx
+package dec
 
 import (
-	"github.com/atomeight/distributed-event-collector/component/templatexx/grpc"
+	"github.com/atomeight/distributed-event-collector/component/dec/grpc"
 	"github.com/atomeight/distributed-event-collector/debug"
 	"github.com/latifrons/commongo/safe_viper"
 	"github.com/latifrons/latigo"
@@ -9,12 +9,12 @@ import (
 	"github.com/latifrons/latigo/grpcserver"
 )
 
-type TemplatexxSetup struct {
-	DebugFlags   *debug.Flags                  `container:"type"`
-	GrpcProvider *grpc.TemplatexxRouteProvider `container:"type"`
+type DECSetup struct {
+	DebugFlags   *debug.Flags           `container:"type"`
+	GrpcProvider *grpc.DECRouteProvider `container:"type"`
 }
 
-func (s *TemplatexxSetup) ProvideBootSequence() []latigo.BootSequence {
+func (s *DECSetup) ProvideBootSequence() []latigo.BootSequence {
 
 	grpcServer := &grpcserver.GrpcServer{
 		ServiceProvider: s.GrpcProvider,

@@ -5,20 +5,20 @@ import (
 	"gorm.io/gorm"
 )
 
-type templatexxMigrator struct {
+type decMigrator struct {
 	db *gorm.DB
 }
 
-func (m *templatexxMigrator) SetDB(db *gorm.DB) {
+func (m *decMigrator) SetDB(db *gorm.DB) {
 	m.db = db
 }
 
-func (m *templatexxMigrator) Migrate() (err error) {
+func (m *decMigrator) Migrate() (err error) {
 	for _, dbo := range []struct {
 		Obj  interface{}
 		Name string
 	}{
-		{Obj: &Fiattemplatexx{}, Name: "Fiattemplatexx"},
+		{Obj: &Fiatdec{}, Name: "Fiatdec"},
 		{Obj: &FiatTrade{}, Name: "FiatTrade"},
 		{Obj: &Progress{}, Name: "Progress"},
 	} {

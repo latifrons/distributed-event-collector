@@ -1,22 +1,22 @@
-package templatexx
+package dec
 
 import (
-	"github.com/atomeight/distributed-event-collector/component/templatexx/grpc"
+	"github.com/atomeight/distributed-event-collector/component/dec/grpc"
 	"github.com/golobby/container/v3"
 )
 
 var Singletons = []interface{}{
 
-	func() *grpc.TemplatexxRouteProvider {
-		var c grpc.TemplatexxRouteProvider
+	func() *grpc.DECRouteProvider {
+		var c grpc.DECRouteProvider
 		err := container.Fill(&c)
 		if err != nil {
 			panic(err)
 		}
 		return &c
 	},
-	func() *TemplatexxSetup {
-		var c TemplatexxSetup
+	func() *DECSetup {
+		var c DECSetup
 		err := container.Fill(&c)
 		if err != nil {
 			panic(err)

@@ -18,11 +18,11 @@ type FiatTrade struct {
 	gorm.Model
 }
 
-type Fiattemplatexx struct {
+type Fiatdec struct {
 	UserId           string          `gorm:"size:25;uniqueIndex"`
 	Declared         decimal.Decimal `gorm:"type:decimal(44,24);"` // 用户声明的资产总额（从KYC获取来的）
-	templatexx       decimal.Decimal `gorm:"type:decimal(44,24);"` // 用户实际可用的资产总额
-	Usedtemplatexx   decimal.Decimal `gorm:"type:decimal(44,24);"` // 用户已经使用的资产总额
+	dec              decimal.Decimal `gorm:"type:decimal(44,24);"` // 用户实际可用的资产总额
+	Useddec          decimal.Decimal `gorm:"type:decimal(44,24);"` // 用户已经使用的资产总额
 	KycStatus        string          `gorm:"size:25;"`             // KYC状态
 	DeclaredSyncedAt time.Time       `gorm:"index;"`
 	gorm.Model

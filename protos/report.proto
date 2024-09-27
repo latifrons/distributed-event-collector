@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package dec;
+
+option go_package = "github.com/latifrons/distributed-event-collector/pbgo/dec";
+
+message ReportRequest{
+  string Owner = 1;
+  string EventType = 2;
+}
+
+message ReportResponse {
+
+}
+
+message GetEventFlowRequest{
+  string Owner = 1;
+}
+
+message GetEventFlowResponse{
+  repeated EventFlow EventFlowList = 1;
+}
+
+message EventFlow {
+  string EventType = 1;
+  int64 TimestampNano = 2;
+}
+
+message GetEventStatisticsRequest{
+  int64 Samples = 1;
+}
+message GetEventStatisticsResponse{
+  repeated EventStatistic EventStatisticList = 1;
+}
+
+message EventStatistic {
+  string EventType = 1;
+  int64 SumTimeNano = 2;
+  int64 Count = 3;
+}
+
+service DecService {
+  rpc Report(ReportRequest) returns (ReportResponse) {}
+  rpc GetEventFlow(GetEventFlowRequest) returns (GetEventFlowResponse) {}
+  rpc GetEventStatistics(GetEventStatisticsRequest) returns (GetEventStatisticsResponse) {}
+}

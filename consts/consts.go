@@ -1,3 +1,3 @@
 package consts
 
-const ComponentName = "templatexx"
+const ComponentName = "dec"

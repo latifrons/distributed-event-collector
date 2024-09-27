@@ -1,7 +1,7 @@
 package cmd
 
 import (
-	"github.com/atomeight/distributed-event-collector/component/templatexx"
+	"github.com/atomeight/distributed-event-collector/component/dec"
 	"github.com/atomeight/distributed-event-collector/core"
 	"github.com/golobby/container/v3"
 	"github.com/latifrons/commongo/safe_viper"
@@ -17,8 +17,8 @@ func init() {
 }
 
 var run = &cobra.Command{
-	Use:   "templatexx",
-	Short: "start templatexx server",
+	Use:   "dec",
+	Short: "start dec server",
 	Run: func(cmd *cobra.Command, args []string) {
 		// Do Stuff Here
 		program.LoadConfigs(program.FolderConfig{
@@ -31,19 +31,19 @@ var run = &cobra.Command{
 		}
 		logging.SetupDefaultLogger(lvl)
 
-		err = core.BuildDependencies(templatexx.Singletons)
+		err = core.BuildDependencies(dec.Singletons)
 		if err != nil {
 			panic(err)
 		}
 
-		var templatexxEngineSetup *templatexx.TemplatexxSetup
-		err = container.Resolve(&templatexxEngineSetup)
+		var decEngineSetup *dec.DECSetup
+		err = container.Resolve(&decEngineSetup)
 		if err != nil {
 			panic(err)
 		}
 
 		engine := latigo.NewDefaultEngineV2()
-		engine.Jobs = templatexxEngineSetup.ProvideBootSequence()
+		engine.Jobs = decEngineSetup.ProvideBootSequence()
 		engine.Start()
 	},
 }

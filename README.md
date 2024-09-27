@@ -1,0 +1,1 @@
+protoc --go_out=pbgo --go-grpc_out=pbgo --validate_out="lang=go:pbgo" --go_opt=module=github.com/latifrons/distributed-event-collector/pbgo --go-grpc_opt=module=github.com/latifrons/distributed-event-collector/pbgo --validate_opt=module=github.com/latifrons/distributed-event-collector/pbgo protos/*.proto
