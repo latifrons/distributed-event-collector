@@ -39,6 +39,7 @@ func (s *SpanCollector) Report(rr *dec.ReportRequest) (err error) {
 		return
 	}
 	m.Set(rr.EventType, time.Now().UnixNano())
+	//log.Info().Str("owner", rr.Owner).Str("event_type", rr.EventType).Int64("ts", time.Now().UnixNano()).Msg("event reported")
 	return
 }
 
@@ -117,12 +118,15 @@ func (s *SpanCollector) GetEventStatistics(samples int64) (resp *dec.GetEventSta
 		})
 
 		t := int64(0)
+		previousType := ""
 		for _, record := range arr {
 			if t == 0 {
 				t = record.Timestamp
+				previousType = record.EventType
 				continue
 			}
-			eventType := record.EventType
+
+			eventType := previousType + " -> " + record.EventType
 			duration := record.Timestamp - t
 			if _, ok := eventStatistics[eventType]; !ok {
 				eventStatistics[eventType] = &dec.EventStatistic{
@@ -134,6 +138,7 @@ func (s *SpanCollector) GetEventStatistics(samples int64) (resp *dec.GetEventSta
 			v.Count += 1
 			v.SumTimeNano += duration
 			t = record.Timestamp
+			previousType = record.EventType
 		}
 	}
 
