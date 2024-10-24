@@ -11,6 +11,13 @@ type DecService struct {
 	SpanCollector *service.SpanCollector `container:"type"`
 }
 
+func (d DecService) GetOwners(ctx context.Context, request *dec.GetOwnersRequest) (*dec.GetOwnersResponse, error) {
+	if request.Limit == 0 {
+		request.Limit = 10
+	}
+	return d.SpanCollector.GetOwners(request.Limit)
+}
+
 func (d DecService) GetEventFlow(ctx context.Context, request *dec.GetEventFlowRequest) (*dec.GetEventFlowResponse, error) {
 	return d.SpanCollector.GetEventFlow(request.Owner)
 }

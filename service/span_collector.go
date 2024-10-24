@@ -162,3 +162,15 @@ func (s *SpanCollector) Dump() {
 	log.Info().Msg("dumped event statistics")
 
 }
+
+func (s *SpanCollector) GetOwners(limit int64) (resp *dec.GetOwnersResponse, err error) {
+	owners := s.cache.Keys(false)
+	if int64(len(owners)) > limit {
+		owners = owners[:limit]
+	}
+	resp = &dec.GetOwnersResponse{}
+	for _, owner := range owners {
+		resp.OwnerList = append(resp.OwnerList, owner.(string))
+	}
+	return
+}

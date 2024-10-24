@@ -20,6 +20,7 @@ const _ = grpc.SupportPackageIsVersion8
 
 const (
 	DecService_Report_FullMethodName             = "/dec.DecService/Report"
+	DecService_GetOwners_FullMethodName          = "/dec.DecService/GetOwners"
 	DecService_GetEventFlow_FullMethodName       = "/dec.DecService/GetEventFlow"
 	DecService_GetEventStatistics_FullMethodName = "/dec.DecService/GetEventStatistics"
 )
@@ -29,6 +30,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DecServiceClient interface {
 	Report(ctx context.Context, in *ReportRequest, opts ...grpc.CallOption) (*ReportResponse, error)
+	GetOwners(ctx context.Context, in *GetOwnersRequest, opts ...grpc.CallOption) (*GetOwnersResponse, error)
 	GetEventFlow(ctx context.Context, in *GetEventFlowRequest, opts ...grpc.CallOption) (*GetEventFlowResponse, error)
 	GetEventStatistics(ctx context.Context, in *GetEventStatisticsRequest, opts ...grpc.CallOption) (*GetEventStatisticsResponse, error)
 }
@@ -45,6 +47,16 @@ func (c *decServiceClient) Report(ctx context.Context, in *ReportRequest, opts .
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(ReportResponse)
 	err := c.cc.Invoke(ctx, DecService_Report_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *decServiceClient) GetOwners(ctx context.Context, in *GetOwnersRequest, opts ...grpc.CallOption) (*GetOwnersResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetOwnersResponse)
+	err := c.cc.Invoke(ctx, DecService_GetOwners_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -76,6 +88,7 @@ func (c *decServiceClient) GetEventStatistics(ctx context.Context, in *GetEventS
 // for forward compatibility
 type DecServiceServer interface {
 	Report(context.Context, *ReportRequest) (*ReportResponse, error)
+	GetOwners(context.Context, *GetOwnersRequest) (*GetOwnersResponse, error)
 	GetEventFlow(context.Context, *GetEventFlowRequest) (*GetEventFlowResponse, error)
 	GetEventStatistics(context.Context, *GetEventStatisticsRequest) (*GetEventStatisticsResponse, error)
 	mustEmbedUnimplementedDecServiceServer()
@@ -87,6 +100,9 @@ type UnimplementedDecServiceServer struct {
 
 func (UnimplementedDecServiceServer) Report(context.Context, *ReportRequest) (*ReportResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Report not implemented")
+}
+func (UnimplementedDecServiceServer) GetOwners(context.Context, *GetOwnersRequest) (*GetOwnersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOwners not implemented")
 }
 func (UnimplementedDecServiceServer) GetEventFlow(context.Context, *GetEventFlowRequest) (*GetEventFlowResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetEventFlow not implemented")
@@ -121,6 +137,24 @@ func _DecService_Report_Handler(srv interface{}, ctx context.Context, dec func(i
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DecServiceServer).Report(ctx, req.(*ReportRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DecService_GetOwners_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOwnersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DecServiceServer).GetOwners(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DecService_GetOwners_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DecServiceServer).GetOwners(ctx, req.(*GetOwnersRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -171,6 +205,10 @@ var DecService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Report",
 			Handler:    _DecService_Report_Handler,
+		},
+		{
+			MethodName: "GetOwners",
+			Handler:    _DecService_GetOwners_Handler,
 		},
 		{
 			MethodName: "GetEventFlow",

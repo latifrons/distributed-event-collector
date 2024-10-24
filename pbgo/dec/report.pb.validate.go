@@ -239,6 +239,210 @@ var _ interface {
 	ErrorName() string
 } = ReportResponseValidationError{}
 
+// Validate checks the field values on GetOwnersRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *GetOwnersRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetOwnersRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// GetOwnersRequestMultiError, or nil if none found.
+func (m *GetOwnersRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetOwnersRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Limit
+
+	if len(errors) > 0 {
+		return GetOwnersRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetOwnersRequestMultiError is an error wrapping multiple validation errors
+// returned by GetOwnersRequest.ValidateAll() if the designated constraints
+// aren't met.
+type GetOwnersRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetOwnersRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetOwnersRequestMultiError) AllErrors() []error { return m }
+
+// GetOwnersRequestValidationError is the validation error returned by
+// GetOwnersRequest.Validate if the designated constraints aren't met.
+type GetOwnersRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetOwnersRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetOwnersRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetOwnersRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetOwnersRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetOwnersRequestValidationError) ErrorName() string { return "GetOwnersRequestValidationError" }
+
+// Error satisfies the builtin error interface
+func (e GetOwnersRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetOwnersRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetOwnersRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetOwnersRequestValidationError{}
+
+// Validate checks the field values on GetOwnersResponse with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *GetOwnersResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on GetOwnersResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// GetOwnersResponseMultiError, or nil if none found.
+func (m *GetOwnersResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetOwnersResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if len(errors) > 0 {
+		return GetOwnersResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetOwnersResponseMultiError is an error wrapping multiple validation errors
+// returned by GetOwnersResponse.ValidateAll() if the designated constraints
+// aren't met.
+type GetOwnersResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetOwnersResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetOwnersResponseMultiError) AllErrors() []error { return m }
+
+// GetOwnersResponseValidationError is the validation error returned by
+// GetOwnersResponse.Validate if the designated constraints aren't met.
+type GetOwnersResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetOwnersResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetOwnersResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetOwnersResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetOwnersResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetOwnersResponseValidationError) ErrorName() string {
+	return "GetOwnersResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetOwnersResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetOwnersResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetOwnersResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetOwnersResponseValidationError{}
+
 // Validate checks the field values on GetEventFlowRequest with the rules
 // defined in the proto definition for this message. If any rules are
 // violated, the first error encountered is returned, or nil if there are no violations.

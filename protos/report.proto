@@ -13,6 +13,15 @@ message ReportResponse {
 
 }
 
+message GetOwnersRequest{
+ int64 Limit = 1;
+}
+
+message GetOwnersResponse {
+  repeated string OwnerList = 1;
+}
+
+
 message GetEventFlowRequest{
   string Owner = 1;
 }
@@ -41,6 +50,7 @@ message EventStatistic {
 
 service DecService {
   rpc Report(ReportRequest) returns (ReportResponse) {}
+  rpc GetOwners(GetOwnersRequest) returns (GetOwnersResponse) {}
   rpc GetEventFlow(GetEventFlowRequest) returns (GetEventFlowResponse) {}
   rpc GetEventStatistics(GetEventStatisticsRequest) returns (GetEventStatisticsResponse) {}
 }
